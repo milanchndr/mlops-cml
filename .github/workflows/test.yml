@@ -32,8 +32,8 @@ jobs:
       run: |
         npm install -g @dvcorg/cml@0.10.0
 
-    - name: Comment on PR using CML
+    - name: Comment using CML
       env:
         REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        cml comment < result.txt
+        cml comment reports/test_results.txt
