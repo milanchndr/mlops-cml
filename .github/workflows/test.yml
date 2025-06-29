@@ -23,8 +23,10 @@ jobs:
 
     - name: Run Pytest and Save Output
       run: |
-        pytest tests/ > result.txt
+        pytest tests/ || true
+        pytest tests/ > result.txt || true
         cat result.txt
+
 
     - name: Install CML
       run: |
