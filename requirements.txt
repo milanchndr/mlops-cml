@@ -1,5 +1,5 @@
 pillow
-scipy
+scipy>=1.8.0,<1.12.0
 tensorflow>=2,<3
 tqdm>=4.41.0,<5
 pytest>=7.0.0,<9.0.0
