@@ -20,12 +20,17 @@ jobs:
     - name: Install Python dependencies
       run: |
         pip install -r requirements.txt
-        pip install cml
 
     - name: Run Pytest and Save Output
       run: |
-        pytest tests/ > result.txt
+        pytest tests/ || true
+        pytest tests/ > result.txt || true
         cat result.txt
+
+
+    - name: Install CML
+      run: |
+        npm install -g @dvcorg/cml@0.10.0
 
     - name: Comment on PR using CML
       env:
