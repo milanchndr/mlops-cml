@@ -1,0 +1,39 @@
+name: sanity test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Python dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Pytest and Save Output
+      run: |
+        pytest tests/ || true
+        pytest tests/ > result.txt || true
+        cat result.txt
+
+
+    - name: Install CML
+      run: |
+        npm install -g @dvcorg/cml@0.10.0
+
+    - name: Comment using CML
+      env:
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cml comment reports/test_results.txt

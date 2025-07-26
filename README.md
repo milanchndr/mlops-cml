@@ -1,4 +1,3 @@
-# Example: Versioning 
+# ML OPS WEEK 4
 
-Datasets and ML model getting started
-[versioning tutorial](https://dvc.org/doc/tutorials/versioning).
+tests are in test folder
